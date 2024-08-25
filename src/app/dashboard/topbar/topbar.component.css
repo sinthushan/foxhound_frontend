@@ -1,0 +1,27 @@
+nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 1rem;
+    align-items: center;
+    background-color: white;
+}
+.rightWidgets{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.rightWidgets>svg{
+    background-color: #fed766;
+    margin-left: 5rem;
+}
+
+.rightWidgets>input{
+    border-radius: 5px;
+    border-style: none;
+    width: 300px;
+    height: 25px;
+    background-color: #eff1f3;
+}

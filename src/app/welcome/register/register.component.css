@@ -1,0 +1,8 @@
+.formConfirmation{
+    display: flex;
+    flex-direction: column;
+ }
+ 
+ .errorClass{
+     color: red;
+ }

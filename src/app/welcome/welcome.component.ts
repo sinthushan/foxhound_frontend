@@ -13,13 +13,13 @@ export class WelcomeComponent {
   @ViewChild(RegisterComponent) registerModal!: RegisterComponent;
   
   onClick($event: MouseEvent) {
-    console.log(this.registerModal)
+
     this.registerModal.dialog.showModal()
 
   }
 
   async getJobs() {
-    console.log(localStorage.getItem('SavedToken'))
+
     const rawResponse = await fetch('http://127.0.0.1:8000/api/v1/jobs/', {
       method: 'GET',
       headers: {
@@ -31,7 +31,7 @@ export class WelcomeComponent {
     });
    
     const content = await rawResponse.json();
-    console.log(content)
+
   }
 
 }

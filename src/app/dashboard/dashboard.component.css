@@ -1,0 +1,24 @@
+.dashboard{
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    width: 100%;;
+}
+
+app-sidebar{
+    width: 15%
+}
+
+main{
+    flex:2;
+    display: flex;
+    flex-direction: column;
+}
+app-topbar{
+    flex: 0;
+}
+
+app-jobcanvas{
+    flex:auto;
+}

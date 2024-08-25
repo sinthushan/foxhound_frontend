@@ -1,17 +1,29 @@
-<form (ngSubmit)="registerUser()">
+<form #form="ngForm" (ngSubmit)="registerUser()">
     <div>
       <label for="username">username  :</label>
-      <input id="username" name="username" [(ngModel)]="username"/>
+      <input id="username" name="username" [(ngModel)]="username_val" #username="ngModel" required/>
+    </div>
+    <div>
+      <label for="email">Email  :</label>
+      <input id="email" name="email" [(ngModel)]="email_val" #email="ngModel" required/>
     </div>
     <div>
       <label for="password">password  :</label>
-      <input id="password" name="password" [(ngModel)]="password"/>
+      <input type="password" id="password" name="password" [(ngModel)]="password_val" #password="ngModel" required/>
     </div>
     <div>
       <label for="confirmpassword">confirm password  :</label>
-      <input id="confirmpassword" name="confirmpassword" [(ngModel)]="confirm_password"/>
+      <input type="password" id="confirmpassword" name="confirmpassword" [(ngModel)]="password_confirm_val" #confirm_password="ngModel" required/>
     </div>
     <p class="register">
       <button>Register</button>
     </p>
+    <div class="formConfirmation">
+      @if ((username.touched && password.touched && confirm_password.touched && form.form.invalid) || errors().length){
+        @for(error of errors(); track error){
+          <span class="errorClass">{{error}}</span>
+        }
+      
+      }
+    </div>
 </form>
