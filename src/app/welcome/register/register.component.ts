@@ -56,6 +56,7 @@ export class RegisterComponent {
       return
     }
     const content = await rawResponse.json();
+    console.log(content)
     this.dialog.close()
     this.username_val = '';
     this.email_val = '';

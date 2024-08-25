@@ -16,6 +16,8 @@ nav{
 .rightWidgets>svg{
     background-color: #fed766;
     margin-left: 5rem;
+    padding: 5px;
+    border-radius: 50%;
 }
 
 .rightWidgets>input{
