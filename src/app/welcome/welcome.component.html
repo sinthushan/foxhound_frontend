@@ -1,3 +1,25 @@
-<dialog applicantRegister></dialog>
-<button (click)="onClick($event)" >Register</button>
-<button (click)="getJobs()">get jobs</button>
+<main class="splash">
+    <dialog applicantRegister></dialog>
+    <header>
+        <h1>FoxHound</h1>
+        <div class="user-section">
+            <a href="">Log In</a>
+            <button id="getStarted" (click)="onClick($event)" >Get Started</button>
+        </div>
+       
+    </header>
+    <section>
+        <img class="logo-image" src="assets/foxhound.png" alt="foxhound logo">
+        <article>
+           <h2>MONITOR YOUR JOB HUNT FROM APPLICATION TO OFFER!!</h2>
+            <div class="call-to-action">
+                <div>Start tracking your applications now!</div> 
+                <button id="getStarted" (click)="onClick($event)" >Get Started</button>
+               
+            </div>
+           
+        </article>
+    </section>
+</main>
+
+
