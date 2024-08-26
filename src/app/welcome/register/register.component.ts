@@ -1,4 +1,4 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, signal, ViewChild } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
 
 @Component({
@@ -14,6 +14,8 @@ export class RegisterComponent {
   password_val = '';
   password_confirm_val = '';
   
+
+
   @ViewChild('username') username!: NgModel;
 
   @ViewChild('password') password!: NgModel;
@@ -21,13 +23,14 @@ export class RegisterComponent {
   @ViewChild('confirm_password') confirm_password!: NgModel;
   
   errors = signal<string[]>([])
-  url = "http://127.0.0.1:8000/api/v1/dj_-rest-auth/registration/"
+  url = "http://127.0.0.1:8000/api/v1/dj-rest-auth/registration/"
 
   constructor(private elementRef: ElementRef) {}
 
   public get dialog(): HTMLDialogElement {
     return (this.elementRef.nativeElement as HTMLDialogElement);
   }
+
 
  
   async registerUser() {

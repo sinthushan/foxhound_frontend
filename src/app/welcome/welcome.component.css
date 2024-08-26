@@ -8,10 +8,13 @@
 }
 
 dialog{
-    height: 80vh;
-    width: 50vw;
+    height: 70vh;
+    width: 30vw;
     background-color: #272727;
     color: #eff1f3;
+    border-radius: 5px;
+    padding: 0;
+    border-color: #009fb7;
 }
 
 dialog::backdrop {

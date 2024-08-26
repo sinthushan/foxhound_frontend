@@ -2,9 +2,10 @@ nav{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    padding: 1rem;
+    padding:0 1rem;
     align-items: center;
     background-color: white;
+    height: fit-content;
 }
 .rightWidgets{
     display: flex;

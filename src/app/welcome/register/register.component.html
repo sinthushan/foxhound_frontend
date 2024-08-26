@@ -1,29 +1,37 @@
-<form #form="ngForm" (ngSubmit)="registerUser()">
-    <div>
-      <label for="username">username  :</label>
-      <input id="username" name="username" [(ngModel)]="username_val" #username="ngModel" required/>
-    </div>
-    <div>
-      <label for="email">Email  :</label>
-      <input id="email" name="email" [(ngModel)]="email_val" #email="ngModel" required/>
-    </div>
-    <div>
-      <label for="password">password  :</label>
-      <input type="password" id="password" name="password" [(ngModel)]="password_val" #password="ngModel" required/>
-    </div>
-    <div>
-      <label for="confirmpassword">confirm password  :</label>
-      <input type="password" id="confirmpassword" name="confirmpassword" [(ngModel)]="password_confirm_val" #confirm_password="ngModel" required/>
-    </div>
-    <p class="register">
-      <button>Register</button>
-    </p>
-    <div class="formConfirmation">
-      @if ((username.touched && password.touched && confirm_password.touched && form.form.invalid) || errors().length){
-        @for(error of errors(); track error){
-          <span class="errorClass">{{error}}</span>
+<div class="container">
+  <header>
+    <img class="logo-image" src="assets/foxhound.png" alt="foxhound logo">
+    <span class="call-to-action">Register today for free to track your job applications!</span>
+  </header>
+  
+  
+  <form #form="ngForm" (ngSubmit)="registerUser()">
+      <div class="form-control">
+        <label for="username">username  :</label>
+        <input id="username" name="username" [(ngModel)]="username_val" #username="ngModel" required/>
+      </div>
+      <div class="form-control">
+        <label for="email">Email  :</label>
+        <input id="email" name="email" [(ngModel)]="email_val" #email="ngModel" required/>
+      </div>
+      <div class="form-control">
+        <label for="password">password  :</label>
+        <input type="password" id="password" name="password" [(ngModel)]="password_val" #password="ngModel" required/>
+      </div>
+      <div class="form-control">
+        <label for="confirmpassword">confirm password  :</label>
+        <input type="password" id="confirmpassword" name="confirmpassword" [(ngModel)]="password_confirm_val" #confirm_password="ngModel" required/>
+      </div>
+      <div class="register" (click)="registerUser()">
+        <button>Register</button>
+      </div>
+      <div class="formConfirmation">
+        @if ((username.touched && password.touched && confirm_password.touched && form.form.invalid) || errors().length){
+          @for(error of errors(); track error){
+            <span class="errorClass">{{error}}</span>
+          }
+        
         }
-      
-      }
-    </div>
-</form>
+      </div>
+  </form>
+  </div>

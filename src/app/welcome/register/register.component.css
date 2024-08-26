@@ -1,8 +1,73 @@
+.container{
+    height: 100%;
+    width: 100%;
+}
+header{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 2rem ;
+}
+img{
+    height: 90%;
+    width: 30%;
+}
+
+.call-to-action{
+    margin: 1rem 0;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+
+}
+
 .formConfirmation{
     display: flex;
     flex-direction: column;
  }
+
+ .form-control{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+    height: fit-content;
+ }
  
+
+ input{
+
+    height: 1.5rem;
+    width: 70%;
+    margin: 0.5rem auto;
+ }
+
+ label{
+    margin-left: 5rem;
+    font-size: x-large;
+ }
+.register{
+    width: 100%;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.register>button{
+    background-color: #fed766;
+    padding: 1rem;
+    margin: 1rem auto;
+    font-weight: bolder;
+    border-radius: 5px;
+    height: max-content;
+
+}
+
  .errorClass{
      color: red;
  }
