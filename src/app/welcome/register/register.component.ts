@@ -1,5 +1,9 @@
-import { Component, ElementRef, EventEmitter, Output, signal, ViewChild } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+import { Component, ElementRef,  inject, signal, ViewChild } from '@angular/core';
 import { FormsModule, NgModel } from '@angular/forms';
+import { ConnectConfig, map } from 'rxjs';
+import { Token } from '../../auth/toeknConfig';
 
 @Component({
   selector: 'dialog[applicantRegister]',
@@ -14,7 +18,7 @@ export class RegisterComponent {
   password_val = '';
   password_confirm_val = '';
   
-
+  private httpClient = inject(HttpClient)
 
   @ViewChild('username') username!: NgModel;
 
@@ -33,37 +37,27 @@ export class RegisterComponent {
 
 
  
-  async registerUser() {
-    this.errors.set([])
-    const rawResponse = await fetch(this.url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
+  registerUser() {
+    console.log("called register")
+    this.httpClient.post<Token>(this.url,
+      {
         username: this.username_val,
         email: this.email_val, 
         password1: this.password_val,
         password2: this.password_confirm_val 
-      })
-    });
-   
-  
-    if (!rawResponse.ok){
-      const errorMsgs = await rawResponse.text().then(response => JSON.parse(response));
-      for (let errorMsg in errorMsgs){
-        this.errors.update(values =>{return [...values,errorMsgs[errorMsg]]})
       }
-      
-      return
-    }
-    const content = await rawResponse.json();
-    console.log(content)
-    this.dialog.close()
-    this.username_val = '';
-    this.email_val = '';
-    this.password_val = '';
-    this.password_confirm_val = '';
+    ).subscribe({
+      next:(res) => {
+        this.dialog.close()
+        
+        this.username_val = '';
+        this.email_val = '';
+        this.password_val = '';
+        this.password_confirm_val = '';
+        console.log(res.access)
+        console.log(res.user)
+      },
+      error: (error) => {console.log(error)}
+    })
   }
 } 
