@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, Input, OnInit } from '@angular/core';
+import { AuthService } from '../../auth/auth.service';
+import { User } from '../../auth/user';
 
 @Component({
   selector: 'app-topbar',
@@ -8,5 +10,10 @@ import { Component } from '@angular/core';
   styleUrl: './topbar.component.css'
 })
 export class TopbarComponent {
+ 
+  @Input({required: true}) currentUser!: User|null;
+
+  
+
 
 }

@@ -4,26 +4,19 @@
     </header>
     
     
-    <form #form="ngForm" (ngSubmit)="loginUser()">
-        <div class="form-control">
-          <label for="username">username  :</label>
-          <input id="username" name="username" [(ngModel)]="username_val" #username="ngModel" required/>
-        </div>
-        <div class="form-control">
-          <label for="password">password  :</label>
-          <input type="password" id="password" name="password" [(ngModel)]="password_val" #password="ngModel" required/>
-        </div>
-        <div class="login" (click)="loginUser()">
-          <button>login</button>
-        </div>
-        <div class="formConfirmation">
-          @if ((username.touched && password.touched && form.form.invalid) || errors().length){
-            @for(error of errors(); track error){
-              <span class="errorClass">{{error}}</span>
-            }
-          
-          }
-        </div>
+    <form [formGroup]="form" (ngSubmit)="loginUser()">
+      <div class="form-control">
+        <label for="username">username  :</label>
+        <input id="username" name="username" formControlName="username"/>
+      </div>
+      <div class="form-control">
+        <label for="password">password  :</label>
+        <input type="password" id="password" name="password" formControlName="password"/>
+      </div>
+      <div class="login">
+        <button [disabled]="form.invalid">login</button>
+      </div>
+
     </form>
     </div>
   

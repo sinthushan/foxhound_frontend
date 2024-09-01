@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, inject, OnInit, ViewChild } from '@angular/core';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
+import { AuthService } from '../auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-welcome',
@@ -9,11 +11,25 @@ import { LoginComponent } from './login/login.component';
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.css'
 })
-export class WelcomeComponent {
+export class WelcomeComponent implements OnInit {
 
   @ViewChild(RegisterComponent) registerModal!: RegisterComponent;
   
   @ViewChild(LoginComponent) loginModal!: LoginComponent;
+  
+  auth = inject(AuthService);
+  router = inject(Router);
+  
+  ngOnInit(): void {
+    this.auth.getcurrentUser().subscribe({
+      next:(res) => {
+        console.log('loggedin')
+        this.router.navigateByUrl('/dashboard')
+      }
+    });
+  }
+
+
   
   openRegister($event: MouseEvent) {
 

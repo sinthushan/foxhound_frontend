@@ -12,6 +12,8 @@ ul {
     padding: 0;
 }
 
+
+
 .bottomlinks{
     flex: 0;
     border-style: solid;
@@ -28,7 +30,7 @@ ul {
     padding-top: 2rem;
 }
 
-.logo>img{
+.logo>a>img{
     width: 80%;
     height: 70%;
     margin-bottom: 0;

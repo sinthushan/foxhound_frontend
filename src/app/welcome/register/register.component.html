@@ -5,33 +5,25 @@
   </header>
   
   
-  <form #form="ngForm" (ngSubmit)="registerUser()">
+  <form [formGroup]="form" (ngSubmit)="registerUser()">
       <div class="form-control">
         <label for="username">username  :</label>
-        <input id="username" name="username" [(ngModel)]="username_val" #username="ngModel" required/>
+        <input id="username" name="username" formControlName="username"/>
       </div>
       <div class="form-control">
         <label for="email">Email  :</label>
-        <input id="email" name="email" [(ngModel)]="email_val" #email="ngModel" required/>
+        <input id="email" name="email" formControlName="email"/>
       </div>
       <div class="form-control">
         <label for="password">password  :</label>
-        <input type="password" id="password" name="password" [(ngModel)]="password_val" #password="ngModel" required/>
+        <input type="password" id="password" name="password" formControlName="password1"/>
       </div>
       <div class="form-control">
         <label for="confirmpassword">confirm password  :</label>
-        <input type="password" id="confirmpassword" name="confirmpassword" [(ngModel)]="password_confirm_val" #confirm_password="ngModel" required/>
+        <input type="password" id="confirmpassword" name="confirmpassword" formControlName="password2"/>
       </div>
-      <div class="register" type="submit" >
-        <button>Register</button>
-      </div>
-      <div class="formConfirmation">
-        @if ((username.touched && password.touched && confirm_password.touched && form.form.invalid) || errors().length){
-          @for(error of errors(); track error){
-            <span class="errorClass">{{error}}</span>
-          }
-        
-        }
+      <div class="register">
+        <button [disabled]="form.invalid"> Register</button>
       </div>
   </form>
   </div>

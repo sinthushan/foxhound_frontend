@@ -1,27 +1,24 @@
-import { Component, ElementRef, signal, ViewChild } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { Component, ElementRef, inject, signal, ViewChild } from '@angular/core';
+import {  FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'dialog[applicantLogin]',
   standalone: true,
-  imports: [FormsModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  username_val = '';
-  password_val = '';
-
   
+  formBuilder = inject(FormBuilder);
+  auth = inject(AuthService);
 
+  form = this.formBuilder.nonNullable.group({
+    username: ['', Validators.required],
+    password: ['', Validators.required],
+  });
 
-  @ViewChild('username') username!: NgModel;
-
-  @ViewChild('password') password!: NgModel;
-
-  
-  errors = signal<string[]>([])
-  url = "http://127.0.0.1:8000/api/v1/dj-rest-auth/login/"
 
   constructor(private elementRef: ElementRef) {}
 
@@ -32,33 +29,8 @@ export class LoginComponent {
 
  
   async  loginUser() {
-    this.errors.set([])
-    const rawResponse = await fetch(this.url, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        username: this.username_val,
-        password: this.password_val,
-
-      })
-    });
-   
-    console.log(rawResponse)
-    if (!rawResponse.ok){
-      const errorMsgs = await rawResponse.text().then(response => JSON.parse(response));
-      for (let errorMsg in errorMsgs){
-        this.errors.update(values =>{return [...values,errorMsgs[errorMsg]]})
-      }
-      
-      return
-    }
-    const content = await rawResponse.json();
-    console.log(content)
+    this.auth.login(this.form.getRawValue());
+    this.form.reset();
     this.dialog.close()
-    this.username_val = '';
-    this.password_val = '';
   }
 }
